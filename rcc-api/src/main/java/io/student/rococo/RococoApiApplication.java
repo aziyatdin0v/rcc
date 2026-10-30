@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RococoApiApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(RococoApiApplication.class);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(RococoApiApplication.class);
+    }
 }

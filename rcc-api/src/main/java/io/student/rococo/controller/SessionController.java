@@ -15,16 +15,16 @@ import static java.util.Objects.requireNonNull;
 @RequestMapping("/api/session")
 public class SessionController {
 
-  @GetMapping
-  public SessionJson getSession(@AuthenticationPrincipal Jwt principal) {
-    if (principal != null) {
-      return new SessionJson(
-          principal.getClaim("sub"),
-          Date.from(requireNonNull(principal.getIssuedAt())),
-          Date.from(requireNonNull(principal.getExpiresAt()))
-      );
-    } else {
-      return SessionJson.empty();
+    @GetMapping
+    public SessionJson getSession(@AuthenticationPrincipal Jwt principal) {
+        if (principal != null) {
+            return new SessionJson(
+                    principal.getClaim("sub"),
+                    Date.from(requireNonNull(principal.getIssuedAt())),
+                    Date.from(requireNonNull(principal.getExpiresAt()))
+            );
+        } else {
+            return SessionJson.empty();
+        }
     }
-  }
 }
