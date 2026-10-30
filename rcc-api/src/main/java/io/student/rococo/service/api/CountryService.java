@@ -5,9 +5,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface CountryService {
-  Page<CountryJson> all(String name, Pageable pageable);
-
-  CountryJson findCountryByName(String name);
-
-  CountryJson findCountryById(String id);
+    Page<CountryJson> getAllCountries(Pageable pageable);
 }

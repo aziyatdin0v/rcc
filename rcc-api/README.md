@@ -84,17 +84,17 @@ rcc-api/
 
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-  http.csrf(AbstractHttpConfigurer::disable)  // CSRF отключен для REST API
-      .authorizeHttpRequests(customizer ->
-          customizer
-              .requestMatchers(GET, "/api/session").permitAll()
-              .requestMatchers(GET, "/api/artist/**").permitAll()
-              .requestMatchers(GET, "/api/museum/**").permitAll()
-              .requestMatchers(GET, "/api/painting/**").permitAll()
-              .anyRequest().authenticated()
-      )
-      .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
-  return http.build();
+    http.csrf(AbstractHttpConfigurer::disable)  // CSRF отключен для REST API
+            .authorizeHttpRequests(customizer ->
+                    customizer
+                            .requestMatchers(GET, "/api/session").permitAll()
+                            .requestMatchers(GET, "/api/artist/**").permitAll()
+                            .requestMatchers(GET, "/api/museum/**").permitAll()
+                            .requestMatchers(GET, "/api/painting/**").permitAll()
+                            .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+    return http.build();
 }
 ```
 
@@ -472,7 +472,7 @@ GET /api/session
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record UserJson(UUID id, String username, String firstname,
                        String lastname, String avatar) {
-  // ...
+    // ...
 }
 ```
 

@@ -16,26 +16,26 @@ import static org.springframework.http.HttpMethod.GET;
 @Configuration
 public class RococoApiConfiguration {
 
-  private final CorsCustomizer corsCustomizer;
+    private final CorsCustomizer corsCustomizer;
 
-  @Autowired
-  public RococoApiConfiguration(CorsCustomizer corsCustomizer) {
-    this.corsCustomizer = corsCustomizer;
-  }
+    @Autowired
+    public RococoApiConfiguration(CorsCustomizer corsCustomizer) {
+        this.corsCustomizer = corsCustomizer;
+    }
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    corsCustomizer.apply(http);
-    http.csrf(AbstractHttpConfigurer::disable)
-        .authorizeHttpRequests(customizer ->
-            customizer
-                .requestMatchers(GET, "/api/session").permitAll()
-                .requestMatchers(GET, "/api/artist/**").permitAll()
-                .requestMatchers(GET, "/api/museum/**").permitAll()
-                .requestMatchers(GET, "/api/painting/**").permitAll()
-                .anyRequest().authenticated()
-        )
-        .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
-    return http.build();
-  }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        corsCustomizer.apply(http);
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(customizer ->
+                        customizer
+                                .requestMatchers(GET, "/api/session").permitAll()
+                                .requestMatchers(GET, "/api/artist/**").permitAll()
+                                .requestMatchers(GET, "/api/museum/**").permitAll()
+                                .requestMatchers(GET, "/api/painting/**").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+        return http.build();
+    }
 }

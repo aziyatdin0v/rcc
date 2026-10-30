@@ -5,11 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface MuseumService {
-  MuseumJson findById(String id);
+    MuseumJson getMuseumById(String id);
 
-  Page<MuseumJson> all(String title, Pageable pageable);
+    Page<MuseumJson> getAllMuseums(Pageable pageable);
 
-  MuseumJson create(MuseumJson museum);
+    Page<MuseumJson> searchMuseumByName(String title, Pageable pageable);
 
-  MuseumJson update(MuseumJson museum);
+    MuseumJson createMuseum(MuseumJson museum);
+
+    MuseumJson updateMuseum(MuseumJson museum);
 }
